@@ -9,17 +9,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Conférence 2026",
-        style: TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-          ),
-        ),
-        backgroundColor: Colors.blue,
-      ),
-      body: Center(
+    return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -63,7 +53,6 @@ class HomePage extends StatelessWidget {
                 )
           ],
         ),
-      ),
-    );
+      );
   }
 }

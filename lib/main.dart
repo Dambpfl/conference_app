@@ -1,17 +1,59 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/events_page.dart';
 import 'package:flutter_application_1/pages/home_page.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  int _currentIndex = 0;
+
+  void setCurrentIndex(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
+   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomePage(), // Page par défaut
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Conférence"),
+        ),
+        body: [
+          HomePage(),
+          EventPage(),
+        ][_currentIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _currentIndex,
+          onTap: (index) => setCurrentIndex(index),
+          selectedItemColor: Colors.green,
+          unselectedItemColor: Colors.grey,
+          iconSize: 32,
+          elevation: 10,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Accueil'
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.calendar_month),
+              label: 'Planning'
+            )
+          ],
+          ),
+      ), // Page par défaut
     );
   }
+
 }
