@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/add_event_page.dart';
 import 'package:flutter_application_1/pages/events_page.dart';
 import 'package:flutter_application_1/pages/home_page.dart';
 
@@ -28,15 +29,21 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Conférence"),
+          title: [
+            Text("Accueil"),
+            Text("Liste des conférences"),
+            Text("Formulaire"),
+          ][_currentIndex],
         ),
         body: [
           HomePage(),
           EventPage(),
+          AddEventPage(),
         ][_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentIndex,
           onTap: (index) => setCurrentIndex(index),
+          type: BottomNavigationBarType.fixed,
           selectedItemColor: Colors.green,
           unselectedItemColor: Colors.grey,
           iconSize: 32,
@@ -49,7 +56,11 @@ class _MyAppState extends State<MyApp> {
             BottomNavigationBarItem(
               icon: Icon(Icons.calendar_month),
               label: 'Planning'
-            )
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.add),
+              label: 'Ajout'
+            ),
           ],
           ),
       ), // Page par défaut
